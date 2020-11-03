@@ -13,18 +13,24 @@
         </tr>
       </thead>
       <tbody>
+        @foreach($program as $program)
         <tr>
-          <td class="text-center">1</td>
-          <td>Create a mobile app</td>
+          <td>{{ $loop->iteration}}</td>
+          <td>{{ $program->name}}</td>
+          <td>{{ $program->description}}</td>
           <td>
-            lorem lorem lorem lorem lorem lorem lorem lorem lorem
-          </td>
-          <td>
-            <a href="#" class="btn btn-secondary">Schedule</a>
-            <a href="#" class="btn btn-secondary">Crew</a>
-            <a href="#" class="btn btn-secondary">Detail</a>
+            <a href="#" class="btn btn-sm btn-light">Schedule</a>
+            <a href="#" class="btn btn-sm btn-info">Crew</a>
+            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+            <form action="{{ route('program-destroy') }}" method="post">
+              @csrf
+              @method('delete')
+              <input type="hidden" name="id" value="{{ $program->id }}">
+              <button type="submit" class="btn btn-sm btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Delete</button>
+            </form>
           </td>
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

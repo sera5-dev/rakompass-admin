@@ -1,16 +1,30 @@
-  <form action="" method="post">
+  <form action="{{ route('program-store') }}" method="post">
+    @csrf
     <div class="card-header">
       <h4>Create new @yield('page')</h4>
     </div>
     <div class="card-body">
-      <div class="form-group">
-        <label>Name of program</label>
-        <input type="text" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label>Description of program (optional)</label>
-        <div class="input-group">
-          <textarea class="form-control"></textarea>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Image of program</label>
+            <div id="image-preview" class="image-preview">
+              <label for="image-upload" id="image-label">Choose File</label>
+              <input type="file" name="image" id="image-upload" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <label>Name of program</label>
+            <input name="name" type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Description of program (optional)</label>
+            <div class="input-group">
+              <textarea name="description" class="form-control"></textarea>
+            </div>
+          </div>
         </div>
       </div>
     </div>

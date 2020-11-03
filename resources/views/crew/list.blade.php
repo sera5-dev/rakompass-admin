@@ -15,18 +15,20 @@
         </tr>
       </thead>
       <tbody>
+        @foreach($crews as $crew)
         <tr>
-          <td class="text-center">1</td>
-          <td>Sofyani</td>
-          <td>Juntihilir</td>
-          <td>Bandung</td>
-          <td>Agustus</td>
+          <td class="text-center">{{ $loop->iteration}}</td>
+          <td>{{ $crew->name }}</td>
+          <td>{{ $crew->address }}</td>
+          <td>{{ $crew->name }}</td>
+          <td>{{ $crew->name }}</td>
           <td>
             <a href="#" class="btn btn-secondary">Schedule</a>
             <a href="#" class="btn btn-secondary">Crew</a>
             <a href="#" class="btn btn-secondary">Detail</a>
           </td>
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
