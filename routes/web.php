@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CrewController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/program', function () {
-  return view('program.index');
-})->name('program');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'verify'])->name('verify');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('/crew', function () {
-  return view('crew.index');
-})->name('crew');
+Route::get('/program', [ProgramController::class, 'index'])->name('program');
+Route::post('/program', [ProgramController::class, 'store'])->name('program-store');
+Route::delete('/program', [ProgramController::class, 'destroy'])->name('program-destroy');
+
+Route::get('/crews', [CrewController::class, 'index'])->name('crew');
