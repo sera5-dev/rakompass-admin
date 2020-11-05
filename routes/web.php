@@ -21,8 +21,12 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'verify'])->name('verify');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('/program', [ProgramController::class, 'index'])->name('program');
-Route::post('/program', [ProgramController::class, 'store'])->name('program-store');
-Route::delete('/program', [ProgramController::class, 'destroy'])->name('program-destroy');
+Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
+Route::get('/programs/{id}', [ProgramController::class, 'show'])->name('programs-show');
+Route::post('/programs', [ProgramController::class, 'store'])->name('programs-store');
+Route::delete('/programs', [ProgramController::class, 'destroy'])->name('programs-destroy');
 
-Route::get('/crews', [CrewController::class, 'index'])->name('crew');
+Route::get('/crews', [CrewController::class, 'index'])->name('crews');
+Route::get('/crews/{id}', [CrewController::class, 'show'])->name('crews-show');
+Route::post('/crews', [CrewController::class, 'store'])->name('crews-store');
+Route::delete('/crews', [ControllerController::class, 'destroy'])->name('crews-destroy');

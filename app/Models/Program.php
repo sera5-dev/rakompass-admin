@@ -11,10 +11,10 @@ class Program extends Model
 {
   use HasFactory;
 
-  public static function getData()
+  public static function getData($params = "")
   {
     try {
-      return json_decode(Http::withToken(session('token'))->get(Controller::getUri('programs'))->body())->data;
+      return json_decode(Http::withToken(session('token'))->get(Controller::getUri('programs') . $params)->body())->data;
     } catch (\Exception $e) {
     }
   }

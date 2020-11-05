@@ -8,7 +8,7 @@ class AuthController extends Controller
 {
   public function index()
   {
-    return $this->checkToken() ?  redirect()->route('program') : view('auth');
+    return $this->checkToken() ?  redirect()->route('programs') : view('auth');
   }
 
   public function verify(Request $request)
