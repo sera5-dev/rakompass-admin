@@ -10,7 +10,7 @@
       <li class="menu-header">Dashboard</li>
       <li class="@yield('dasboard')"><a class="nav-link" href="blank.html"><i class="fas fa-fire"></i><span>Dashboard</span></a></li>
       <li class="menu-header">Pages</li>
-      <li class="@yield('program')"> <a href="{{ route('program') }}" class=" nav-link"><i class="fas fa-video"></i> <span>Program</span></a> </li>
-      <li class="@yield('crew')"> <a href="{{ route('crew') }}" class=" nav-link"><i class="fas fa-users"></i> <span>Crew</span></a> </li>
+      <li class="@yield('program')"> <a href="{{ route('programs') }}" class=" nav-link"><i class="fas fa-video"></i> <span>Program</span></a> </li>
+      <li class="@yield('crew')"> <a href="{{ route('crews') }}" class=" nav-link"><i class="fas fa-users"></i> <span>Crew</span></a> </li>
   </aside>
 </div>
