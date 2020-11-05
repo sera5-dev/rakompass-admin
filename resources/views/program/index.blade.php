@@ -17,7 +17,7 @@
         </div>
       </div>
       @elseif(session('program-store-succeed'))
-      <div class="alert alert-primary alert-has-icon">
+      <div class="alert alert-light alert-has-icon">
         <div class="alert-icon"><i class="fas fa-check"></i></div>
         <div class="alert-body">
           <div class="alert-title">All good</div>
