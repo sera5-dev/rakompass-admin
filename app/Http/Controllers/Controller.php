@@ -42,4 +42,34 @@ class Controller extends BaseController
   {
     return session('token') ? true : false;
   }
+
+  public function sv($request, $attr, $param)
+  {
+    $data = [];
+    foreach ($attr as $attr) {
+      if ($request->$attr !== null)
+        $data[$attr] = $request->$attr;
+    }
+
+    if ($request->hasFile('image'))
+      Http::attach('image', file_get_contents($request->file('image')), 'image.jpg')->withToken(session('token'))->post($this->getUri($param), $data);
+    else
+      Http::withToken(session('token'))->post($this->getUri($param), $data);
+  }
+
+  public function res($param, $flash, $message, $id = "")
+  {
+    return $id ?
+      redirect()->route($param, ['id' => $id])->with($flash, $message) :
+      redirect()->route($param)->with($flash, $message);
+  }
+
+  public static function getData($params)
+  {
+    $uri = Controller::getUri($params);
+    try {
+      return json_decode(Http::withToken(session('token'))->get($uri)->body())->data;
+    } catch (\Exception $e) {
+    }
+  }
 }
