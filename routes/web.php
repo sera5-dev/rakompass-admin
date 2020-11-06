@@ -24,6 +24,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
 Route::get('/programs/{id}', [ProgramController::class, 'show'])->name('programs-show');
 Route::post('/programs', [ProgramController::class, 'store'])->name('programs-store');
+Route::post('/programs/{id}/crews', [ProgramController::class, 'storeCrew'])->name('programs-crew-store');
 Route::delete('/programs', [ProgramController::class, 'destroy'])->name('programs-destroy');
 
 Route::get('/crews', [CrewController::class, 'index'])->name('crews');
