@@ -18,7 +18,7 @@
           <td>{{ $loop->iteration}}</td>
           <td>{{ $program->name}}</td>
           <td>{{ $program->description}}</td>
-          <td>
+          <td style="width:145px">
             <form action="{{ route('programs-destroy') }}" method="post">
               @csrf
               @method('delete')

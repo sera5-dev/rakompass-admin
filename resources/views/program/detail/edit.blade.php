@@ -1,6 +1,7 @@
 <div class="card author-box card-primary">
   <form action="{{ route('programs-store') }}" method="post" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" name="id" value="{{ $program->id }}">
     <div class="card-header">
       <h4>Edit @yield('page')</h4>
     </div>

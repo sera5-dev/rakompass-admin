@@ -24,6 +24,7 @@
           </div>
         </form>
       </div>
+      @if($crews)
       <div class="form-group">
         <label>Crew List</label>
         <div class="table-responsive">
@@ -36,26 +37,20 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($crews as $crew)
               <tr>
-                <td>1</td>
-                <td>Anjing</td>
+                <td>{{ $loop->iteration}}</td>
+                <td>{{ $crew->name }}</td>
                 <td>
                   <button type="submit" class="btn btn-danger btn-sm float-right">Delete</button>
                 </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Anjing</td>
-                <td>
-                  <form action="{{ route('programs-store') }}" method="post" enctype="multipart/form-data">
-                    <button type="submit" class="btn btn-danger btn-sm float-right">Delete</button>
-                  </form>
-                </td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
       </div>
+      @endif
     </div>
   </div>
 </div>
