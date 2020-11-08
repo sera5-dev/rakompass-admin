@@ -11,6 +11,14 @@ class Crew extends Model
 {
   use HasFactory;
 
+  protected $fillable = [
+    'id',
+    'name',
+    'address',
+    'birth_date',
+    'birth_place',
+  ];
+
   public static function getData()
   {
     try {
