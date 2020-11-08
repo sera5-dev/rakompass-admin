@@ -8,21 +8,27 @@
 <div class="row">
   <div class="col-md-7">
     <div class="row">
-      @include('program.detail.profile')
+      @include('program.profile.index')
     </div>
     <div class="row">
     </div>
     <div class="row">
-      @include('program.detail.schedule')
+      @include('program.schedule.index')
+    </div>
+    <div class="row">
+      @include('program.episode.index')
     </div>
   </div>
   <div class="col-md-5">
     <div class="row">
-      @include('program.detail.edit')
+      @include('program.profile.form')
     </div>
     <div class="row">
-      @include('program.detail.crew')
+      @include('program.crew.index')
     </div>
   </div>
+</div>
+<div class="row">
+  @include('program.episode.list')
 </div>
 @endsection
