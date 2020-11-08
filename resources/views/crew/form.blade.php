@@ -17,19 +17,19 @@
       <div class="col-md-8">
         <div class="form-group">
           <label>Name</label>
-          <input type="text" class="form-control" required>
+          <input type="text" name="name" class="form-control" required>
         </div>
         <div class="form-group">
           <label>Birthplace (optional)</label>
-          <input type="text" class="form-control">
+          <input type="text" name="birth_place" class="form-control">
         </div>
         <div class="form-group">
           <label>Birthdate (optional)</label>
-          <input type="date" class="form-control">
+          <input type="date" name="birth_date" class="form-control">
         </div>
         <div class="form-group">
           <label>Adress (optional)</label>
-          <textarea class="form-control"></textarea>
+          <textarea name="address" class="form-control"></textarea>
         </div>
       </div>
     </div>

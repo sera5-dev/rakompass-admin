@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        @include('crew.create')
+        @include('crew.form')
       </div>
       <div class="card">
         @include('crew.list')
