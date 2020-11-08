@@ -11,7 +11,7 @@
           <th>Address</th>
           <th>Birth Place</th>
           <th>Birth Date</th>
-          <th></th>
+          <th style="width: 140px;"></th>
         </tr>
       </thead>
       <tbody>

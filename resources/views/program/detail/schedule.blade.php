@@ -3,48 +3,53 @@
     <div class="card-header">
       <h4>Schedules</h4>
     </div>
-    <form action="{{ route('programs-store') }}" method="post" enctype="multipart/form-data">
-      <div class="card-body">
-        @csrf
-        <div class="form-group">
-          <label>Add Caster</label>
-          <div class="row">
-            <div class="col-md-9">
-              <select class="form-control">
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <div class="text-right">
-                <button type="submit" class="btn btn-primary form-control">Submit</button>
-              </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label>Create new schedule</label>
+        <form action=" {{ route('programs-schedule-store',['id' => $program->id])}}" method="post">
+          <input type="hidden" name="program_id" value="{{ $program->id }}">
+          @csrf
+          <div class="input-group">
+            <select class="custom-select" name="day" id="inputGroupSelect05">
+              <option value="1">Senin</option>
+              <option value="2">Selasa</option>
+              <option value="3">Rabu</option>
+              <option value="4">Kamis</option>
+              <option value="5">Jumat</option>
+              <option value="6">Sabtu</option>
+              <option value="7">Minggu</option>
+            </select>
+            <input type="time" name="start" id="start" class="form-control">
+            <input type="time" name="end" id="end" class="form-control">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-primary">Create</button>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <form action="{{ route('programs-store') }}" method="post" enctype="multipart/form-data">
-            <label>Crew List</label>
-            <table class="table">
-              <thead>
-                <th>#</th>
-                <th>Nama</th>
-                <th></th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Anjing</td>
-                  <td>
-                    <button type="submit" class="btn btn-danger btn-sm float-right">Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </form>
-        </div>
+        </form>
       </div>
-    </form>
+      <div class="form-group">
+        <label>Schedule List</label>
+        <form action="" method="post">
+          @csrf
+          <div class="input-group">
+            <input type="hidden" name="program_id" value="{{ $program->id}}">
+            <select class="custom-select" name="crew_id" id="inputGroupSelect05">
+              <option value="1">Senin</option>
+              <option value="2">Selasa</option>
+              <option value="3">Rabu</option>
+              <option value="4">Kamis</option>
+              <option value="5">Jumat</option>
+              <option value="6">Sabtu</option>
+              <option value="7">Minggu</option>
+            </select>
+            <input type="time" name="start" id="start" value="" class="form-control">
+            <input type="time" name="end" id="end" value="" class="form-control">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
