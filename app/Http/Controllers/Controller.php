@@ -12,6 +12,11 @@ class Controller extends BaseController
 {
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+  public function __construct()
+  {
+    $this->middleware([CheckToken::class]);
+  }
+
   public static function getUri($param)
   {
     return 'http://127.0.0.1:8000/' . $param;
@@ -43,7 +48,7 @@ class Controller extends BaseController
     return session('token') ? true : false;
   }
 
-  public function sv($request, $attr, $param)
+  public function sv($request, $attr, $param, $method = "")
   {
     $data = [];
     foreach ($attr as $attr) {
@@ -51,10 +56,14 @@ class Controller extends BaseController
         $data[$attr] = $request->$attr;
     }
 
-    if ($request->hasFile('image'))
-      Http::attach('image', file_get_contents($request->file('image')), 'image.jpg')->withToken(session('token'))->post($this->getUri($param), $data);
-    else
-      Http::withToken(session('token'))->post($this->getUri($param), $data);
+    if ($method == "delete")
+      Http::withToken(session('token'))->delete($this->getUri($param), $data);
+    else {
+      if ($request->hasFile('image'))
+        Http::attach('image', file_get_contents($request->file('image')), 'image.jpg')->withToken(session('token'))->post($this->getUri($param), $data);
+      else
+        Http::withToken(session('token'))->post($this->getUri($param), $data);
+    }
   }
 
   public function res($param, $flash, $message, $id = "")

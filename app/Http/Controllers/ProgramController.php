@@ -26,16 +26,18 @@ class ProgramController extends Controller
   {
     $program = $this->getData('programs/' . $id);
     $crews = $this->getData('programs/' . $id . '/crews');
-    return view('program.detail.index', compact('program', 'crews'));
+    $options = $this->getData('programs/' . $id . '/crews/unselected');
+    return view('program.detail.index', compact('program', 'crews', 'options'));
   }
 
   public function store(Request $request)
   {
     try {
+      $request->filled('id') ? $route = 'programs-show' : $route = 'programs';
       $this->sv($request, $this->attr, 'programs');
-      return $this->res('programs', 'program-store-succeed', 'succeed to store data');
+      return $this->res($route, 'program-store-succeed', 'succeed to store data', $request->id);
     } catch (\Exception $e) {
-      return $this->res('programs', 'program-store-failed', 'failed to store data');
+      return $this->res($route, 'program-store-failed', 'failed to store data');
     }
   }
 
@@ -44,21 +46,41 @@ class ProgramController extends Controller
     try {
       $data = ['crew_id'];
       $this->sv($request, $data, 'programs/' . $id . '/crews');
-      return $this->res('programs', 'program-crew-store-succeed', 'succeed to store data', $id);
+      return $this->res('programs-show', 'program-crew-store-succeed', 'succeed to store data', $id);
     } catch (\Exception $e) {
-      return $this->res('programs', 'program-crew-store-succeed', 'failed to store data', $id);
+      return $this->res('programs-show', 'program-crew-store-succeed', 'failed to store data', $id);
+    }
+  }
+
+  public function storeSchedule(Request $request)
+  {
+    try {
+      $data = ['program_id', 'day', 'start', 'end'];
+      $this->sv($request, $data, 'schedules');
+      return $this->res('programs-show', 'program-schedule-store-succeed', 'succeed to store data', $request->program_id);
+    } catch (\Exception $e) {
+      return $this->res('programs-show', 'program-schedule-store-failed', 'failed to store data', $request->program_id);
     }
   }
 
   public function destroy(Request $request)
   {
     try {
-      Http::withToken(session('token'))->delete($this->getUri('programs'), [
-        'id' => $request->id,
-      ]);
+      Http::withToken(session('token'))->delete($this->getUri('programs'), ['id' => $request->id,]);
       return redirect()->route('programs')->with('program-changes-succeed', 'succeed to delete the program');
     } catch (\Exception $e) {
       return redirect()->route('programs')->with('program-changes-failed', 'failed to delete the program');
+    }
+  }
+
+  public function destroyCrew(Request $request, $id)
+  {
+    try {
+      $data = ['crew_id'];
+      $this->sv($request, $data, 'programs/' . $id . '/crews', 'delete');
+      return $this->res('programs-show', 'program-crew-destroy-succeed', 'succeed to destroy data', $id);
+    } catch (\Exception $e) {
+      return $this->res('programs-show', 'program-crew-destroy-succeed', 'failed to destroy data', $id);
     }
   }
 }

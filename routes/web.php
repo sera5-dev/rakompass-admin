@@ -25,6 +25,8 @@ Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
 Route::get('/programs/{id}', [ProgramController::class, 'show'])->name('programs-show');
 Route::post('/programs', [ProgramController::class, 'store'])->name('programs-store');
 Route::post('/programs/{id}/crews', [ProgramController::class, 'storeCrew'])->name('programs-crew-store');
+Route::post('/programs/{id}/schedules', [ProgramController::class, 'storeSchedule'])->name('programs-schedule-store');
+Route::delete('/programs/{id}/crews', [ProgramController::class, 'destroyCrew'])->name('programs-crew-destroy');
 Route::delete('/programs', [ProgramController::class, 'destroy'])->name('programs-destroy');
 
 Route::get('/crews', [CrewController::class, 'index'])->name('crews');
