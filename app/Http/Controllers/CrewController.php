@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Crew;
+use App\Models\Crew as Obj;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -11,40 +11,40 @@ class CrewController extends Controller
   public function __construct()
   {
     $this->middleware([CheckToken::class]);
+    $obj = new Obj();
+    $this->attr = $obj->getFillable();
   }
 
   public function index()
   {
-    $crews = Crew::getData();
+    $crews = Obj::getData();
     return view('crew.index', compact('crews'));
   }
 
   public function store(Request $request)
   {
     try {
-      if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        Http::attach(
-          'image',
-          file_get_contents($image),
-          'image.jpg'
-        )->withToken(session('token'))->post($this->getUri('crews'), [
-          'name' => $request->name,
-          'address' => $request->address,
-          'birth_date' => $request->birth_date,
-          'birth_place' => $request->birth_place,
-        ]);
-      } else {
-        Http::withToken(session('token'))->post($this->getUri('crews'), [
-          'name' => $request->name,
-          'address' => $request->address,
-          'birth_date' => $request->birth_date,
-          'birth_place' => $request->birth_place,
-        ]);
-      }
-      return redirect()->route('crews')->with('crew-store-succeed', 'succeed to create the new crew');
+      $request->filled('id') ? $route = 'crews-show' : $route = 'crews';
+      $this->sv($request, $this->attr, 'crews');
+      return $this->res($route, 'crew-store-succeed', 'succeed to store data', $request->id);
     } catch (\Exception $e) {
-      return redirect()->route('crews')->with('crew-store-failed', 'failed to create the crew');
+      return $this->res($route, 'crew-store-failed', 'failed to store data');
+    }
+  }
+
+  public function show($id)
+  {
+    $crew = $this->getData('crews/' . $id);
+    return view('crew.detail', compact('crew'));
+  }
+
+  public function destroy(Request $request)
+  {
+    try {
+      Http::withToken(session('token'))->delete($this->getUri('crews'), ['id' => $request->id,]);
+      return redirect()->route('crews')->with('crew-changes-succeed', 'succeed to delete the crew');
+    } catch (\Exception $e) {
+      return redirect()->route('crews')->with('crew-changes-failed', 'failed to delete the crew');
     }
   }
 }

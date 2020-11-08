@@ -12,11 +12,6 @@ class Controller extends BaseController
 {
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-  public function __construct()
-  {
-    $this->middleware([CheckToken::class]);
-  }
-
   public static function getUri($param)
   {
     return 'http://127.0.0.1:8000/' . $param;

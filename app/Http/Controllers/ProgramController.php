@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\CheckToken;
 use App\Models\Program as Obj;
 use Illuminate\Support\Facades\Http;
 
@@ -25,9 +24,9 @@ class ProgramController extends Controller
   public function show($id)
   {
     $program = $this->getData('programs/' . $id);
-    $crews = $this->getData('programs/' . $id . '/crews');
     $options = $this->getData('programs/' . $id . '/crews/unselected');
-    return view('program.detail.index', compact('program', 'crews', 'options'));
+    $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu', 'Minggu'];
+    return view('program.detail', compact('program', 'options', 'days'));
   }
 
   public function store(Request $request)
@@ -55,11 +54,22 @@ class ProgramController extends Controller
   public function storeSchedule(Request $request)
   {
     try {
-      $data = ['program_id', 'day', 'start', 'end'];
+      $data = ['id', 'program_id', 'day', 'start', 'end'];
       $this->sv($request, $data, 'schedules');
       return $this->res('programs-show', 'program-schedule-store-succeed', 'succeed to store data', $request->program_id);
     } catch (\Exception $e) {
       return $this->res('programs-show', 'program-schedule-store-failed', 'failed to store data', $request->program_id);
+    }
+  }
+
+  public function storeEpisode(Request $request)
+  {
+    try {
+      $data = ['id', 'schedule_id', 'date', 'episode', 'link', 'theme'];
+      $this->sv($request, $data, 'episodes');
+      return $this->res('programs-show', 'program-episode-store-succeed', 'succeed to store data', $request->program_id);
+    } catch (\Exception $e) {
+      return $this->res('programs-show', 'program-episode-store-failed', 'failed to store data', $request->program_id);
     }
   }
 
