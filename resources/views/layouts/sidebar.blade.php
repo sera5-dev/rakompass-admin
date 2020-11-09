@@ -10,7 +10,11 @@
       <li class="menu-header">Dashboard</li>
       <li class="@yield('dasboard')"><a class="nav-link" href="blank.html"><i class="fas fa-fire"></i><span>Dashboard</span></a></li>
       <li class="menu-header">Pages</li>
-      <li class="@yield('program')"> <a href="{{ route('programs') }}" class=" nav-link"><i class="fas fa-video"></i> <span>Program</span></a> </li>
+      <li class="@yield('program')"> <a href="{{ route('programs') }}" class=" nav-link"><i class="fas fa-broadcast-tower"></i> <span>Program</span></a> </li>
       <li class="@yield('crew')"> <a href="{{ route('crews') }}" class=" nav-link"><i class="fas fa-users"></i> <span>Crew</span></a> </li>
+      <li class="@yield('contact')"> <a href="{{ route('contacts') }}" class=" nav-link"><i class="fas fa-address-card"></i> <span>Social & Contact</span></a> </li>
+      <li class="@yield('event')"> <a href="{{ route('events') }}" class=" nav-link"><i class="fas fa-calendar"></i> <span>Event</span></a> </li>
+      <li class="@yield('partner')"> <a href="{{ route('partners') }}" class=" nav-link"><i class="fas fa-ad"></i> <span>Partner</span></a> </li>
+      <li class="@yield('about')"> <a href="{{ route('about') }}" class=" nav-link"><i class="fas fa-user-cog"></i> <span>About</span></a> </li>
   </aside>
 </div>
