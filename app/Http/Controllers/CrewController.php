@@ -35,7 +35,9 @@ class CrewController extends Controller
   public function show($id)
   {
     $crew = $this->getData('crews/' . $id);
-    return view('crew.detail', compact('crew'));
+    $contacts = $this->getData('contacts');
+    $socials = $this->getData('socials');
+    return view('crew.detail', compact('crew', 'contacts', 'socials'));
   }
 
   public function destroy(Request $request)
