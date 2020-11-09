@@ -11,16 +11,10 @@
       @include('crew.profile.index')
     </div>
     <div class="row">
-      @include('crew.contact.form')
+      @include('crew.contact.index')
     </div>
     <div class="row">
-      @include('crew.contact.list')
-    </div>
-    <div class="row">
-      @include('crew.social.form')
-    </div>
-    <div class="row">
-      @include('crew.social.list')
+      @include('crew.social.index')
     </div>
   </div>
   <div class="col-md-5">

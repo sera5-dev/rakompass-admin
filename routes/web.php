@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CrewController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,8 @@ Route::get('/crews', [CrewController::class, 'index'])->name('crews');
 Route::get('/crews/{id}', [CrewController::class, 'show'])->name('crews-show');
 Route::post('/crews', [CrewController::class, 'store'])->name('crews-store');
 Route::delete('/crews', [CrewsController::class, 'destroy'])->name('crews-destroy');
+
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
+Route::get('/events', [ContactController::class, 'index'])->name('events');
+Route::get('/partners', [ContactController::class, 'index'])->name('partners');
+Route::get('/about', [ContactController::class, 'index'])->name('about');
