@@ -5,7 +5,9 @@
     </div>
     <div class="card-body">
       @include('crew.social.form')
+      @if(property_exists($crew, 'social'))
       @include('crew.social.list')
+      @endif
     </div>
   </div>
 </div>

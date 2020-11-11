@@ -5,7 +5,9 @@
     </div>
     <div class="card-body">
       @include('crew.contact.form')
+      @if(property_exists($crew, 'contact'))
       @include('crew.contact.list')
+      @endif
     </div>
   </div>
 </div>
