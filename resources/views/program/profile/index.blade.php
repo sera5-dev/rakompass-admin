@@ -3,7 +3,9 @@
     <div class="card-body">
       <div class="row">
         <div class="col-sm-12 col-md-6 tex-center">
+          @if(property_exists($program, 'image'))
           <img alt="image" src="{{ asset($program->image) }}" class="img-fluid mx-auto d-block">
+          @endif
           <div class="clearfix"></div>
         </div>
         <div class="col-sm-12 col-md-6">

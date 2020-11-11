@@ -1,10 +1,10 @@
+@if(property_exists($program, 'episode'))
 <div class="col-md-12">
   <div class="card card-primary">
     <div class="card-header">
       <h4>List of episodes</h4>
     </div>
     <div class="card-body">
-      @if($program->episode)
       <div class="table-responsive">
         <table class="table table-striped" id="table-1">
           <thead>
@@ -54,7 +54,7 @@
           </tbody>
         </table>
       </div>
-      @endif
     </div>
   </div>
 </div>
+@endif

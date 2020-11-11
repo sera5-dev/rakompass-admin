@@ -1,3 +1,4 @@
+@if(property_exists($program, 'schedule'))
 <form action=" {{ route('programs-episode-store', ['id' => $program->id])}} " method="post">
   @csrf
   <input type="hidden" name="id" value="">
@@ -50,3 +51,4 @@
     </div>
   </div>
 </form>
+@endif
