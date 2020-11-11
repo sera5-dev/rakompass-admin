@@ -9,6 +9,7 @@ class UserController extends Controller
 {
   public function signin(Request $request)
   {
+    $this->middleware([CheckToken::class]);
     $res = $this->login($request);
     $this->checkLogin($res);
   }
