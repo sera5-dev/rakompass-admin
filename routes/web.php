@@ -34,14 +34,15 @@ Route::post('/programs', [ProgramController::class, 'store'])->name('programs-st
 Route::post('/programs/{id}/crews', [ProgramController::class, 'storeCrew'])->name('programs-crew-store');
 Route::post('/programs/{id}/schedules', [ProgramController::class, 'storeSchedule'])->name('programs-schedule-store');
 Route::post('/programs/{id}/episodes', [ProgramController::class, 'storeEpisode'])->name('programs-episode-store');
-Route::delete('/programs/{id}/crews', [ProgramController::class, 'destroyCrew'])->name('programs-crew-destroy');
-Route::delete('/programs/{id}/episodes', [ProgramController::class, 'destroyCrew'])->name('programs-episode-destroy');
 Route::delete('/programs', [ProgramController::class, 'destroy'])->name('programs-destroy');
+Route::delete('/programs/{id}/crews', [ProgramController::class, 'destroyCrew'])->name('programs-crew-destroy');
+Route::delete('/programs/{id}/episodes', [ProgramController::class, 'destroyEpisode'])->name('programs-episode-destroy');
+Route::delete('/programs/{id}/schedules', [ProgramController::class, 'destroySchedule'])->name('programs-schedule-destroy');
 
 Route::get('/crews', [CrewController::class, 'index'])->name('crews');
 Route::get('/crews/{id}', [CrewController::class, 'show'])->name('crews-show');
 Route::post('/crews', [CrewController::class, 'store'])->name('crews-store');
-Route::delete('/crews', [CrewsController::class, 'destroy'])->name('crews-destroy');
+Route::delete('/crews', [CrewController::class, 'destroy'])->name('crews-destroy');
 
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 Route::post('/contacts', [ContactController::class, 'store'])->name('contacts-store');
