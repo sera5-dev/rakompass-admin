@@ -83,14 +83,13 @@ class ProgramController extends Controller
     }
   }
 
-  public function destroyCrew(Request $request, $id)
+  public function destroySchedule(Request $request, $id)
   {
     try {
-      $data = ['crew_id'];
-      $this->sv($request, $data, 'programs/' . $id . '/crews', 'delete');
-      return $this->res('programs-show', 'program-crew-destroy-succeed', 'succeed to destroy data', $id);
+      Http::withToken(session('token'))->delete($this->getUri('schedules'), ['id' => $request->id,]);
+      return $this->res('programs-show', 'program-episode-store-succeed', 'succeed to store data', $id);
     } catch (\Exception $e) {
-      return $this->res('programs-show', 'program-crew-destroy-succeed', 'failed to destroy data', $id);
+      return $this->res('programs-show', 'program-episode-store-failed', 'succeed to store data', $id);
     }
   }
 }
