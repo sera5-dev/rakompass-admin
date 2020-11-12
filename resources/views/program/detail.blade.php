@@ -5,6 +5,7 @@
 @section('program', 'active')
 
 @section('body')
+<?php $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu', 'Minggu']; ?>
 <div class="row">
   <div class="col-md-7">
     <div class="row">

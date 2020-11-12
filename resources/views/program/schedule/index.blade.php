@@ -1,4 +1,4 @@
-<?php $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu', 'Minggu']; ?>
+<?php $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu', 'Minggu', 'Setiap Hari']; ?>
 <div class="col-md-12">
   <div class="card card-primary">
     <div class="card-header">
